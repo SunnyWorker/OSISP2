@@ -1,3 +1,4 @@
+#!/bin/bash
 A=0
 for file in `find $1 -type f -name "$2"`
 do
