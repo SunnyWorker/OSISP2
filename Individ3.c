@@ -63,6 +63,11 @@ int main(int argc, char *argv[]) {
 	sscanf(argv[4],"%d",&t2);
 	sscanf(argv[5],"%d",&s1);
 	sscanf(argv[6],"%d",&s2);
+	if(t1<0 || t2<0 || s1<0 || s2<0 || t1>t2 || s1>s2) {
+		printf("Number are incorrect!\n");
+		return 0;
+	}
+
 	ReadCat(path,"",t1,t2,s1,s2,fl,&a);
 	printf("Просмотренных файлов и каталогов = %d\n",a);
 	fclose(fl);
