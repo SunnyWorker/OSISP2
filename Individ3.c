@@ -28,33 +28,34 @@ int CheckInput(char ok[]) {
 
 void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FILE *file,int *a) {
 	char s[200];
-	char ss[200];
+	//char ss[200];
 	int size, time;
 	
 	strcpy(s,ct);
-	strcpy(ss,ct);
+	//strcpy(ss,ct);
 	
 	struct dirent *d;
-
 	strcat(s,con);
-	strcat(ss,con);
+	//strcat(ss,con);
 	struct stat buf;
-	stat(s,&buf);
-	
-	if(strcmp(con,"")!=0) strcat(ss,"/");
-	DIR *dr = opendir(ss);
-	
-	if(dr!=NULL) 
+        stat(s,&buf);
+
+	//if(strcmp(con,"")!=0) strcat(ss,"/");
+	if(S_ISDIR(buf.st_mode)) 
 	{
+		if(strcmp(con,"")!=0) strcat(s,"/");
+		DIR *dr = opendir(s);
 		d = readdir(dr);
 		while (d != NULL && strcmp(d->d_name,".")!=0) 
 		{
 			(*a)++;
-			ReadCat(ss,d->d_name,t1,t2,s1,s2,file,a);
+			ReadCat(s,d->d_name,t1,t2,s1,s2,file,a);
 			d = readdir(dr);
 		}
+		closedir(dr);
 	}
 	else if(S_ISREG(buf.st_mode)) {
+	
 		if(stat(s,&buf)==0) 
 		{
 			time = buf.st_ctime;
@@ -69,8 +70,6 @@ void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FI
 			} 
 		}
 	}
-
-	closedir(dr);
 
 	return;
 }	
