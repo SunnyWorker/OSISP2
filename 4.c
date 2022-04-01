@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 int main(int argc, char *argv[]) {
+if(argc<3) {
+        fprintf(stderr,"Not enough arguments!\n");
+        exit(EXIT_FAILURE);     
+}
 
 FILE *file;
 FILE *file2;
@@ -9,7 +13,7 @@ file = fopen(argv[1],"r");
 file2 = fopen(argv[2],"w");
 if(file2==NULL) {
 fprintf(stderr,"FILE NOT FOUND EXEPTION!\n");
-exit(EXIT_FAILURE);
+return 1;
 }
 struct stat buf;
 lstat(argv[1], &buf);

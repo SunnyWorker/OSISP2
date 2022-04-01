@@ -3,7 +3,10 @@
 #include <stdlib.h>
 #include <errno.h>
 int main(int argc, char *argv[]) {
-
+if(argc<3) {
+        fprintf(stderr,"Not enough arguments!\n");
+        exit(EXIT_FAILURE);     
+}
 FILE *file;
 file = fopen(argv[1],"r");
 if(file==NULL) {

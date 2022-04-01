@@ -76,6 +76,11 @@ void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FI
 }	
 
 int main(int argc, char *argv[]) {
+	if(argc<7) {
+        	fprintf(stderr,"Not enough arguments!\n");
+        	exit(EXIT_FAILURE);     
+	}
+
 	char *path = argv[1];
 	FILE *fl = fopen(argv[2],"w+t");
 	int a = 0;
