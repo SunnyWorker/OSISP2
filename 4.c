@@ -11,7 +11,7 @@ FILE *file;
 FILE *file2;
 file = fopen(argv[1],"r");
 file2 = fopen(argv[2],"w");
-if(file2==NULL) {
+if(file==NULL) {
 fprintf(stderr,"FILE NOT FOUND EXEPTION!\n");
 return 1;
 }
