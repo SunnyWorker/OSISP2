@@ -35,11 +35,12 @@ void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FI
 	strcpy(ss,ct);
 	
 	struct dirent *d;
-	struct stat buf;
 
 	strcat(s,con);
 	strcat(ss,con);
-
+	struct stat buf;
+	stat(s,&buf);
+	
 	if(strcmp(con,"")!=0) strcat(ss,"/");
 	DIR *dr = opendir(ss);
 	
@@ -53,8 +54,7 @@ void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FI
 			d = readdir(dr);
 		}
 	}
-	else {
-		struct stat buf;
+	else if(S_ISREG(buf.st_mode)) {
 		if(stat(s,&buf)==0) 
 		{
 			time = buf.st_ctime;
