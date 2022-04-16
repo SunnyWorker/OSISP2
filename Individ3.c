@@ -27,20 +27,15 @@ int CheckInput(char ok[]) {
 }
 
 void ReadCat(const char *ct, const char *con, int t1, int t2, int s1, int s2, FILE *file,int *a) {
+	
 	char s[200];
-	//char ss[200];
 	int size, time;
-	
 	strcpy(s,ct);
-	//strcpy(ss,ct);
-	
 	struct dirent *d;
 	strcat(s,con);
-	//strcat(ss,con);
 	struct stat buf;
         stat(s,&buf);
-
-	//if(strcmp(con,"")!=0) strcat(ss,"/");
+	
 	if(S_ISDIR(buf.st_mode)) 
 	{
 		if(strcmp(con,"")!=0) strcat(s,"/");
